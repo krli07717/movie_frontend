@@ -5,9 +5,12 @@
 /.pnp
 .pnp.js
 
+# env
+.env
+
+.eslintcache
 # testing
 /coverage
-
 # production
 /build
 
