@@ -4,10 +4,17 @@ import APIS from "../utils/apis";
 import MovieCard from "./MovieCard";
 
 function Collection({ collectionName, collectionAPI }) {
+  const [pages, setPages] = useState(1);
   const [collection, setCollection] = useState([]);
-  const getCollection = async () => {
+  const [noMoreResults, setNoMoreResults] = useState(false);
+  const getCollection = async (pages) => {
     try {
-      const response = await axios.get(APIS[collectionAPI]);
+      let API = APIS[collectionAPI] + `${pages}`;
+      const response = await axios.get(API);
+      if (response.data.results.length < 20) {
+        // tmdb api gives every page 20 results by default
+        setNoMoreResults(true);
+      }
       const refinedData = await response.data.results.reduce(
         (
           arr,
@@ -41,8 +48,8 @@ function Collection({ collectionName, collectionAPI }) {
   };
 
   useEffect(() => {
-    getCollection();
-  }, []);
+    getCollection(pages);
+  }, [pages]);
   return (
     <section>
       <h2>{collectionName}</h2>
@@ -51,6 +58,11 @@ function Collection({ collectionName, collectionAPI }) {
           return <MovieCard key={movieInfos.id} {...movieInfos} />;
         })}
       </div>
+      {!noMoreResults && (
+        <button onClick={() => setPages((prevPage) => prevPage + 1)}>
+          <h1>Load More</h1>
+        </button>
+      )}
     </section>
   );
 }

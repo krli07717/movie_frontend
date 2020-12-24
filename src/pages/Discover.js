@@ -14,18 +14,6 @@ function Discover() {
   const collections = [
     { collectionName: "Now playing...", collectionAPI: "NOW_PLAYING" },
   ];
-  const getNowPlaying = async () => {
-    try {
-      const response = await axios.get(APIS.NOW_PLAYING);
-      console.log(response.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    getNowPlaying();
-  }, []);
 
   return (
     <>
@@ -34,7 +22,8 @@ function Discover() {
           <span>
             {userInfoContext.userInfoState.isAuth && `Welcome Back User! `}
           </span>
-          Discover!
+          <br />
+          Discover...
         </h3>
       </div>
       {collections.map((collection, index) => {

@@ -28,9 +28,9 @@ const reducer = (state, action) => {
   switch (action.type) {
     case ACTIONS.LOG_IN:
       // hard-coded true
-      return { ...state, isAuth: true, MovieList: [] };
+      return { ...state, isAuth: true };
     case ACTIONS.LOG_OUT:
-      return { ...state, isAuth: false };
+      return initialState;
     case ACTIONS.ADD_TO_LIST:
       return { ...state, MovieList: [...state.MovieList, action.payload] };
     case ACTIONS.REMOVE_FROM_LIST:

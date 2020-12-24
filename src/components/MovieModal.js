@@ -14,12 +14,12 @@ function MovieModal({
   modalIsOpen,
   setModalIsOpen,
 }) {
-  //fetch provider & home page?
   const { userInfoState, userInfoDispatch } = useContext(UserInfoContext);
   const movieAlreadyIncluded = userInfoState.MovieList.find(
     (item) => item.id === id
   );
-  //add/watched/delete/redirect to login button
+
+  //redirect to login when !isAuth
   let history = useHistory();
   const redirectLogin = () => {
     history.push("/Login");
@@ -30,8 +30,6 @@ function MovieModal({
       type: ACTIONS.ADD_TO_LIST,
       payload: { id: id, watched: false },
     });
-    setModalIsOpen(false);
-    console.log(userInfoState.MovieList);
   };
 
   const toggleWatched = () => {
@@ -40,8 +38,6 @@ function MovieModal({
       type: ACTIONS.TOGGLE_WATCHED,
       payload: { id: id, watched: !watched },
     });
-    setModalIsOpen(false);
-    console.log(userInfoState.MovieList);
   };
 
   const deleteFromList = () => {
@@ -49,8 +45,6 @@ function MovieModal({
       type: ACTIONS.REMOVE_FROM_LIST,
       payload: { id },
     });
-    setModalIsOpen(false);
-    console.log(userInfoState.MovieList);
   };
 
   return (
@@ -82,6 +76,13 @@ function MovieModal({
             </button>
           </>
         )}
+        <button
+          onClick={() => {
+            setModalIsOpen(false);
+          }}
+        >
+          Close
+        </button>
       </Modal>
     </div>
   );
