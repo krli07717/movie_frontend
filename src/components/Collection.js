@@ -46,9 +46,11 @@ function Collection({ collectionName, collectionAPI }) {
   return (
     <section>
       <h2>{collectionName}</h2>
-      {collection.map((movieInfos) => {
-        return <MovieCard key={movieInfos.id} {...movieInfos} />;
-      })}
+      <div className="collection">
+        {collection.map((movieInfos) => {
+          return <MovieCard key={movieInfos.id} {...movieInfos} />;
+        })}
+      </div>
     </section>
   );
 }

@@ -1,11 +1,11 @@
 import React from "react";
 
-function Home() {
+function Search() {
   return (
     <div>
-      <h3>Home!</h3>
+      <h3>Search!</h3>
     </div>
   );
 }
 
-export default Home;
+export default Search;

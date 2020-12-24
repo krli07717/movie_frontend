@@ -15,6 +15,9 @@ function Navbar() {
             <Link to="/Discover">Discover</Link>
           </li>
           <li>
+            <Link to="/Search">Search</Link>
+          </li>
+          <li>
             <Link to="/MyList">My List</Link>
           </li>
           <li>

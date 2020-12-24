@@ -16,3 +16,8 @@ footer {
   display: inline-block;
   margin: 10px 10px;
 }
+
+.collection {
+  display: flex;
+  flex-wrap: wrap;
+}
