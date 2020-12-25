@@ -13,6 +13,8 @@ function Discover() {
   const userInfoContext = useContext(UserInfoContext);
   const collections = [
     { collectionName: "Now playing...", collectionAPI: "NOW_PLAYING" },
+    { collectionName: "Upcoming...", collectionAPI: "UPCOMING" },
+    { collectionName: "Popular...", collectionAPI: "POPULAR" },
   ];
 
   return (
