@@ -1,7 +1,5 @@
-import React, { useContext, useEffect } from "react";
-import axios from "../utils/axios";
-import { UserInfoContext, ACTIONS } from "../App";
-import APIS from "../utils/apis";
+import React, { useContext } from "react";
+import { UserInfoContext } from "../App";
 import Collection from "../components/Collection";
 
 // const API_KEY = process.env.REACT_APP_TMDB_API_KEY;

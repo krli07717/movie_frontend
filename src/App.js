@@ -83,7 +83,7 @@ function App() {
               <Search />
             </Route>
             <Route path="/MyList">
-              <MyList />
+              {userInfo.isAuth ? <MyList /> : <Redirect exact to="/Login" />}
             </Route>
             <Route path="/Login">
               {userInfo.isAuth ? <Redirect exact to="/Discover" /> : <Login />}

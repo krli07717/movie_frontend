@@ -5,32 +5,40 @@ import MovieModal from "./MovieModal";
 Modal.setAppElement("#root");
 const previewImagePrefix = `https://image.tmdb.org/t/p/w185/`;
 const modalImagePrefix = `https://image.tmdb.org/t/p/w500/`;
+const backdropImagePrefix = `https://image.tmdb.org/t/p/w1280/`;
 // poster_sizes:"w92","w154","w185","w342","w500","w780","original"
 
 function MovieCard({
   id,
   title,
   poster_path,
+  backdrop_path,
   release_date,
   overview,
   vote_average,
   vote_count,
+  similar,
 }) {
-  const previewImageUrl = `${previewImagePrefix}` + `${poster_path}`;
-  const modalImageUrl = `${modalImagePrefix}` + `${poster_path}`;
+  const previewImageUrl = `${previewImagePrefix}${poster_path}`;
+  const modalImageUrl = `${modalImagePrefix}${poster_path}`;
+  const backdropImageUrl = backdrop_path
+    ? `${backdropImagePrefix}${backdrop_path}`
+    : null;
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const modalProps = {
     id,
     title,
     modalImageUrl,
+    backdropImageUrl,
     overview,
     release_date,
     modalIsOpen,
     setModalIsOpen,
+    similar,
   };
   return (
     <>
-      <div>
+      <div className="movieCard">
         <button
           onClick={() => {
             setModalIsOpen(true);

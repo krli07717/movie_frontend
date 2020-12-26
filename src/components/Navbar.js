@@ -17,9 +17,11 @@ function Navbar() {
           <li>
             <Link to="/Search">Search</Link>
           </li>
-          <li>
-            <Link to="/MyList">My List</Link>
-          </li>
+          {userInfoContext.userInfoState.isAuth && (
+            <li>
+              <Link to="/MyList">My List</Link>
+            </li>
+          )}
           <li>
             <Link
               to="/Login"

@@ -21,3 +21,13 @@ footer {
   display: flex;
   flex-wrap: wrap;
 }
+
+.movieCard {
+  display: inline-block;
+}
+
+.recommendations {
+  background-color: #000;
+  display: flex;
+  flex-wrap: wrap;
+}

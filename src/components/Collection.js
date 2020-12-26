@@ -3,44 +3,56 @@ import axios from "../utils/axios";
 import APIS from "../utils/apis";
 import MovieCard from "./MovieCard";
 
-function Collection({ collectionName, collectionAPI, searchQuery }) {
+//Search has prop searchQuery
+//MyList has prop movieId, fetch details for each movie
+function Collection({ collectionName, collectionAPI, searchQuery, movieId }) {
   const [pages, setPages] = useState(1);
   const [collection, setCollection] = useState([]);
   const [noMoreLoads, setNoMoreLoads] = useState(false);
   const [noSearchResults, setNoSearchResults] = useState(false);
   const getCollection = async (pages) => {
+    let query = searchQuery ? `&query=${searchQuery}` : "";
+    let API = movieId
+      ? APIS(collectionAPI, movieId)
+      : APIS(collectionAPI) + `${pages}` + query;
     try {
-      let query = searchQuery ? `&query=${searchQuery}` : "";
-      let API = APIS[collectionAPI] + `${pages}` + query;
       const response = await axios.get(API);
-      if (searchQuery && response.data.results.length === 0) {
+      let structure = movieId ? [response.data] : response.data.results;
+
+      if (searchQuery && structure.length === 0) {
         setNoSearchResults(true);
       }
-      if (response.data.results.length < 20) {
+      if (movieId || structure.length < 20) {
         // tmdb api gives every page 20 results by default
         setNoMoreLoads(true);
       }
-      const refinedData = await response.data.results.reduce(
+
+      //MyList has props: similar
+      const refinedData = await structure.reduce(
         (
           arr,
           {
             id,
             title,
             poster_path,
+            backdrop_path,
             release_date,
             overview,
             vote_average,
             vote_count,
+            similar,
           }
         ) => {
           arr.push({
             id,
             title,
             poster_path,
+            backdrop_path,
             release_date,
             overview,
             vote_average,
             vote_count,
+            similar,
           });
           return arr;
         },
@@ -73,11 +85,11 @@ function Collection({ collectionName, collectionAPI, searchQuery }) {
     <section>
       <h2>{collectionName}</h2>
       <div className="collection">
-        {collection.map((movieInfos) => {
-          if (movieInfos.poster_path) {
-            return <MovieCard key={movieInfos.id} {...movieInfos} />;
-          }
-        })}
+        {collection.map((movieInfos) =>
+          movieInfos.poster_path ? (
+            <MovieCard key={movieInfos.id} {...movieInfos} />
+          ) : null
+        )}
       </div>
       {noResults()}
       {showLoadButton()}
