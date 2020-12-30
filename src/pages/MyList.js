@@ -16,14 +16,18 @@ function MyList() {
           </h3>
         );
       })}
-      {userInfoState.MovieList.map(({ id }) => (
-        <Collection
-          key={id}
-          collectionName={""}
-          collectionAPI={"DETAILS"}
-          movieId={id}
-        />
-      ))}
+      {userInfoState.MovieList.length ? (
+        userInfoState.MovieList.map(({ id }) => (
+          <Collection
+            key={id}
+            collectionName={""}
+            collectionAPI={"DETAILS"}
+            movieId={id}
+          />
+        ))
+      ) : (
+        <h3>You dont have any to-watch movie</h3>
+      )}
     </div>
   );
 }

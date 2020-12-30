@@ -12,6 +12,8 @@ import Search from "./pages/Search";
 import Discover from "./pages/Discover";
 import MyList from "./pages/MyList";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
+import { backendInstance as axios } from "./utils/axios";
 
 const UserInfoContext = React.createContext();
 const ACTIONS = {
@@ -28,6 +30,7 @@ const reducer = (state, action) => {
   switch (action.type) {
     case ACTIONS.LOG_IN:
       // hard-coded true
+      // fetch data payload and modify List
       return { ...state, isAuth: true };
     case ACTIONS.LOG_OUT:
       return initialState;
@@ -56,16 +59,30 @@ const reducer = (state, action) => {
 
 function App() {
   const [userInfo, dispatch] = useReducer(reducer, initialState);
-  // const checkAuthenticatin = async() => {
-  //   try {
-  //     //grab jwt token from localStorage
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
-  // useEffect(()=> {
-  //   checkAuthenticatin()
-  // },[])
+  const checkAuthentication = async () => {
+    try {
+      const res = await axios.get("checkjwt");
+      console.log("res,,", res);
+      // const parseRes = await res.json();
+      // console.log("parseRes,,", parseRes);
+      res.data === true
+        ? dispatch({ type: ACTIONS.LOG_IN })
+        : console.log("No Auth");
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+  useEffect(() => {
+    checkAuthentication();
+  }, []);
+
+  useEffect(() => {
+    if (userInfo.isAuth) {
+      console.log("updated db");
+    }
+  }, [userInfo.MovieList]);
+
   return (
     <UserInfoContext.Provider
       value={{ userInfoState: userInfo, userInfoDispatch: dispatch }}
@@ -87,6 +104,13 @@ function App() {
             </Route>
             <Route path="/Login">
               {userInfo.isAuth ? <Redirect exact to="/Discover" /> : <Login />}
+            </Route>
+            <Route path="/Register">
+              {userInfo.isAuth ? (
+                <Redirect exact to="/Discover" />
+              ) : (
+                <Register />
+              )}
             </Route>
           </Switch>
         </Layout>
