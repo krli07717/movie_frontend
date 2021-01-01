@@ -71,7 +71,7 @@ function App() {
   const checkAuthentication = async () => {
     try {
       const res = await axios.get("checkjwt");
-      console.log("res,,", res);
+      console.log("jwt", res.data);
       // const parseRes = await res.json();
       // console.log("parseRes,,", parseRes);
       res.data === true
@@ -82,19 +82,33 @@ function App() {
     }
   };
 
-  //fetch data list when userId (user logs in)
-  useEffect(() => {
-    console.log("Id changed", userInfo);
-    const getlist = async (userId) => {
+  const getlist = async (userId) => {
+    try {
       const { data } = await axios.post("getlist", {
         userId,
       });
       const payload = await JSON.parse(data);
       console.log("getlist api fetched", payload);
       await dispatch({ type: ACTIONS.FETCH_LIST, payload: payload });
-      console.log("getlist fn dispatched", userInfo);
-    };
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
+  const updateDb = async () => {
+    try {
+      const res = await axios.put("updatedb", {
+        userId: userInfo.userId,
+        MovieList: userInfo.MovieList,
+      });
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  //fetch data list when userId (user logs in)
+  useEffect(() => {
     if (userInfo.userId) {
       //fetch user list by userid
       getlist(userInfo.userId);
@@ -103,8 +117,9 @@ function App() {
 
   //update database when movielist is modified
   useEffect(() => {
-    if (userInfo.isAuth) {
-      console.log("updated db");
+    // will trigger updatedb when user simply logs in
+    if (userInfo.userId !== null) {
+      updateDb();
     }
   }, [userInfo.MovieList]);
 
