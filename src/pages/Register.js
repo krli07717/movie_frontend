@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { UserInfoContext, ACTIONS } from "../App";
 import { backendInstance as axios } from "../utils/axios";
 import { Link } from "react-router-dom";
 
 function Register() {
+  const { userInfoDispatch } = useContext(UserInfoContext);
   const [registerInputs, setRegisterInputs] = useState({
     email: "",
     password: "",
@@ -15,8 +17,13 @@ function Register() {
         password,
       });
       console.log(res);
+      //and then logs in
+      await userInfoDispatch({
+        type: ACTIONS.LOG_IN,
+        payload: res.data.userId,
+      });
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data);
     }
   };
 
@@ -45,6 +52,7 @@ function Register() {
           name="password"
           placeholder="password"
           onChange={(e) => onInputChange(e)}
+          minLength="4"
           required
         />
         <br />

@@ -8,7 +8,7 @@ import Collection from "../components/Collection";
 // all apis in one object; axios instance
 // row {rowtitle, rowfetchURLs}
 function Discover() {
-  const userInfoContext = useContext(UserInfoContext);
+  const { userInfoState } = useContext(UserInfoContext);
   const collections = [
     { collectionName: "Now playing...", collectionAPI: "NOW_PLAYING" },
     { collectionName: "Upcoming...", collectionAPI: "UPCOMING" },
@@ -19,9 +19,7 @@ function Discover() {
     <>
       <div>
         <h3>
-          <span>
-            {userInfoContext.userInfoState.isAuth && `Welcome Back User! `}
-          </span>
+          <span>{userInfoState.isAuth && `Welcome Back User! `}</span>
           <br />
           Discover...
         </h3>

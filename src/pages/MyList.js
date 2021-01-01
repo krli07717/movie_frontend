@@ -5,7 +5,7 @@ import Collection from "../components/Collection";
 function MyList() {
   const { userInfoState, userInfoDispatch } = useContext(UserInfoContext);
   //fetch its recommendations, tmdb url & home page
-
+  console.log(userInfoState);
   return (
     <div>
       <h3>MyList!</h3>

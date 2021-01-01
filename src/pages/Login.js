@@ -9,13 +9,20 @@ function Login() {
 
   const login = async ({ email, password }) => {
     try {
+      //testing backend/db communication
       const res = await axios.post("login", {
         email,
         password,
       });
-      console.log(res);
+
+      console.log("login api fetched", res.data);
+
+      await userInfoDispatch({
+        type: ACTIONS.LOG_IN,
+        payload: res.data.userId,
+      });
     } catch (error) {
-      console.log(error);
+      console.log(error.response);
     }
   };
 

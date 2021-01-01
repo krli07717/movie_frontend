@@ -19,6 +19,7 @@ const UserInfoContext = React.createContext();
 const ACTIONS = {
   LOG_IN: "LOG_IN",
   LOG_OUT: "LOG_OUT",
+  FETCH_LIST: "FETCH_LIST",
   ADD_TO_LIST: "ADD_TO_LIST",
   TOGGLE_WATCHED: "TOGGLE_WATCHED",
   REMOVE_FROM_LIST: "REMOVE_FROM_LIST",
@@ -29,11 +30,19 @@ const initialState = { isAuth: false, userId: null, MovieList: [] };
 const reducer = (state, action) => {
   switch (action.type) {
     case ACTIONS.LOG_IN:
-      // hard-coded true
-      // fetch data payload and modify List
-      return { ...state, isAuth: true };
+      return {
+        ...state,
+        isAuth: true,
+        userId: action.payload,
+        // MovieList: [...state.MovieList, ...action.payload], // useReducer is having issue with this async operation
+      };
     case ACTIONS.LOG_OUT:
       return initialState;
+    case ACTIONS.FETCH_LIST:
+      return {
+        ...state,
+        MovieList: [...action.payload],
+      };
     case ACTIONS.ADD_TO_LIST:
       return { ...state, MovieList: [...state.MovieList, action.payload] };
     case ACTIONS.REMOVE_FROM_LIST:
@@ -73,15 +82,35 @@ function App() {
     }
   };
 
+  //fetch data list when userId (user logs in)
   useEffect(() => {
-    checkAuthentication();
-  }, []);
+    console.log("Id changed", userInfo);
+    const getlist = async (userId) => {
+      const { data } = await axios.post("getlist", {
+        userId,
+      });
+      const payload = await JSON.parse(data);
+      console.log("getlist api fetched", payload);
+      await dispatch({ type: ACTIONS.FETCH_LIST, payload: payload });
+      console.log("getlist fn dispatched", userInfo);
+    };
 
+    if (userInfo.userId) {
+      //fetch user list by userid
+      getlist(userInfo.userId);
+    }
+  }, [userInfo.userId]);
+
+  //update database when movielist is modified
   useEffect(() => {
     if (userInfo.isAuth) {
       console.log("updated db");
     }
   }, [userInfo.MovieList]);
+
+  useEffect(() => {
+    checkAuthentication();
+  }, []);
 
   return (
     <UserInfoContext.Provider
