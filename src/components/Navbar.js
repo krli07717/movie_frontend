@@ -1,9 +1,14 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserInfoContext, ACTIONS } from "../App";
+import { backendInstance as axios } from "../utils/axios";
 
 function Navbar() {
   const userInfoContext = useContext(UserInfoContext);
+  const deleteJwtToken = async () => {
+    const res = await axios.get("auth/deleteToken");
+    return;
+  };
   return (
     <div>
       <nav>
@@ -28,6 +33,7 @@ function Navbar() {
               onClick={() => {
                 if (userInfoContext.userInfoState.isAuth) {
                   userInfoContext.userInfoDispatch({ type: ACTIONS.LOG_OUT });
+                  deleteJwtToken();
                 }
               }}
             >

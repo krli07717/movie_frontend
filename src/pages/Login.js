@@ -6,11 +6,11 @@ import { Link } from "react-router-dom";
 function Login() {
   const { userInfoState, userInfoDispatch } = useContext(UserInfoContext);
   const [loginInputs, setLoginInputs] = useState({ email: "", password: "" });
+  const [loginError, setLoginError] = useState(false);
 
   const login = async ({ email, password }) => {
     try {
-      //testing backend/db communication
-      const res = await axios.post("login", {
+      const res = await axios.post("auth/login", {
         email,
         password,
       });
@@ -23,6 +23,7 @@ function Login() {
       });
     } catch (error) {
       console.log(error.response);
+      setLoginError(true);
     }
   };
 
@@ -56,6 +57,7 @@ function Login() {
         <br />
         <input type="submit" value="Log in" />
       </form>
+      {loginError && <h5>Wrong Combinations</h5>}
       <button onClick={() => userInfoDispatch({ type: ACTIONS.LOG_IN })}>
         Fast Log in
       </button>

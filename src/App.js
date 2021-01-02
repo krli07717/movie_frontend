@@ -70,26 +70,24 @@ function App() {
   const [userInfo, dispatch] = useReducer(reducer, initialState);
   const checkAuthentication = async () => {
     try {
-      const res = await axios.get("checkjwt");
-      console.log("jwt", res.data);
-      // const parseRes = await res.json();
-      // console.log("parseRes,,", parseRes);
-      res.data === true
-        ? dispatch({ type: ACTIONS.LOG_IN })
-        : console.log("No Auth");
+      const {
+        data: { user_id },
+      } = await axios.get("auth/checkjwt");
+      dispatch({ type: ACTIONS.LOG_IN, payload: user_id });
+      console.log("jwt passed");
     } catch (err) {
-      console.error(err.message);
+      console.error(err);
     }
   };
 
   const getlist = async (userId) => {
     try {
-      const { data } = await axios.post("getlist", {
+      const { data } = await axios.post("movies/getlist", {
         userId,
       });
       const payload = await JSON.parse(data);
       console.log("getlist api fetched", payload);
-      await dispatch({ type: ACTIONS.FETCH_LIST, payload: payload });
+      dispatch({ type: ACTIONS.FETCH_LIST, payload: payload });
     } catch (error) {
       console.log(error);
     }
@@ -97,7 +95,7 @@ function App() {
 
   const updateDb = async () => {
     try {
-      const res = await axios.put("updatedb", {
+      const res = await axios.put("movies/updatedb", {
         userId: userInfo.userId,
         MovieList: userInfo.MovieList,
       });
@@ -110,7 +108,6 @@ function App() {
   //fetch data list when userId (user logs in)
   useEffect(() => {
     if (userInfo.userId) {
-      //fetch user list by userid
       getlist(userInfo.userId);
     }
   }, [userInfo.userId]);
@@ -144,6 +141,7 @@ function App() {
               <Search />
             </Route>
             <Route path="/MyList">
+              {/* when isAuth directs however to MyList */}
               {userInfo.isAuth ? <MyList /> : <Redirect exact to="/Login" />}
             </Route>
             <Route path="/Login">

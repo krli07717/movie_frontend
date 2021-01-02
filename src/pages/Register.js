@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import { UserInfoContext, ACTIONS } from "../App";
 import { backendInstance as axios } from "../utils/axios";
-import { Link } from "react-router-dom";
 
 function Register() {
   const { userInfoDispatch } = useContext(UserInfoContext);
@@ -9,14 +8,14 @@ function Register() {
     email: "",
     password: "",
   });
+  const [registerError, setRegisterError] = useState(false);
 
   const register = async ({ email, password }) => {
     try {
-      const res = await axios.post("register", {
+      const res = await axios.post("auth/register", {
         email,
         password,
       });
-      console.log(res);
       //and then logs in
       await userInfoDispatch({
         type: ACTIONS.LOG_IN,
@@ -24,6 +23,7 @@ function Register() {
       });
     } catch (error) {
       console.log(error.response.data);
+      setRegisterError(true);
     }
   };
 
@@ -58,6 +58,7 @@ function Register() {
         <br />
         <input type="submit" value="Register" />
       </form>
+      {registerError && <h5>Email already taken</h5>}
     </div>
   );
 }

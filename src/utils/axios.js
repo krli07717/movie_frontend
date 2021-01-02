@@ -6,6 +6,7 @@ const movieInstance = axios.create({
 });
 
 const backendInstance = axios.create({
+  withCredentials: true, //for cookies
   baseURL: "http://localhost:5000/",
 });
 
