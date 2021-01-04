@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Collection from "../components/Collection";
+import Button from "../components/Button";
 
 function Search() {
   const [query, setQuery] = useState("");
@@ -24,7 +25,10 @@ function Search() {
           placeholder="search.."
           onChange={(e) => handleInputChange(e)}
         />
-        <input type="submit" value="go" />
+        <Button type="submit">
+          Search
+          {/* <input type="submit" value="Search" /> */}
+        </Button>
       </form>
       {/* the following condition prevents Collection/ from rendering at first */}
       {submit && (

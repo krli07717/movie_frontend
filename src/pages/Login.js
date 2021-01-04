@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { UserInfoContext, ACTIONS } from "../App";
 import { backendInstance as axios } from "../utils/axios";
 import { Link } from "react-router-dom";
+import Button from "../components/Button";
 
 function Login() {
   const { userInfoState, userInfoDispatch } = useContext(UserInfoContext);
@@ -55,12 +56,12 @@ function Login() {
           required
         />
         <br />
-        <input type="submit" value="Log in" />
+        <Button type="submit">
+          Log in
+          {/* <input type="submit" value="Log in" /> */}
+        </Button>
       </form>
       {loginError && <h5>Wrong Combinations</h5>}
-      <button onClick={() => userInfoDispatch({ type: ACTIONS.LOG_IN })}>
-        Fast Log in
-      </button>
       <div>
         <h3>Not yet registered?</h3>
         <Link to="/Register">Register!</Link>

@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { UserInfoContext, ACTIONS } from "../App";
 import { backendInstance as axios } from "../utils/axios";
+import Button from "../components/Button";
 
 function Register() {
   const { userInfoDispatch } = useContext(UserInfoContext);
@@ -56,7 +57,10 @@ function Register() {
           required
         />
         <br />
-        <input type="submit" value="Register" />
+        <Button type="submit">
+          Register
+          {/* <input type="submit" value="Register" /> */}
+        </Button>
       </form>
       {registerError && <h5>Email already taken</h5>}
     </div>

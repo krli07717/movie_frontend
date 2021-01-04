@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { movieInstance as axios } from "../utils/axios";
 import APIS from "../utils/apis";
 import MovieCard from "./MovieCard";
+import Button from "./Button";
 
 //Search has prop searchQuery
 //MyList has prop movieId, fetch details for each movie
@@ -67,11 +68,18 @@ function Collection({ collectionName, collectionAPI, searchQuery, movieId }) {
   const showLoadButton = () => {
     // not letting LoadMore button render at first
     return collection.length && !noMoreLoads ? (
-      <button onClick={() => setPages((prevPage) => prevPage + 1)}>
-        <h1>Load More</h1>
-      </button>
+      <Button
+        onClick={() => setPages((prevPage) => prevPage + 1)}
+        type="button"
+      >
+        Load More
+      </Button>
     ) : null;
   };
+
+  // <button onClick={() => setPages((prevPage) => prevPage + 1)}>
+  //   <h1>Load More</h1>
+  // </button>;
 
   const noResults = () => {
     return noSearchResults ? <h3>No Results Found</h3> : null;

@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer } from "react";
-import "./App.css";
+import "./App.scss";
 import {
   BrowserRouter as Router,
   Switch,
@@ -74,7 +74,7 @@ function App() {
         data: { user_id },
       } = await axios.get("auth/checkjwt");
       dispatch({ type: ACTIONS.LOG_IN, payload: user_id });
-      console.log("jwt passed");
+      await console.log("jwt passed");
     } catch (err) {
       console.error(err);
     }
@@ -141,7 +141,7 @@ function App() {
               <Search />
             </Route>
             <Route path="/MyList">
-              {/* when isAuth directs however to MyList */}
+              {/* when isAuth directs however to Discover */}
               {userInfo.isAuth ? <MyList /> : <Redirect exact to="/Login" />}
             </Route>
             <Route path="/Login">

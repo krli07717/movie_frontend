@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 import MovieModal from "./MovieModal";
+import Button from "./Button";
 
 Modal.setAppElement("#root");
 const previewImagePrefix = `https://image.tmdb.org/t/p/w185/`;
@@ -39,13 +40,9 @@ function MovieCard({
   return (
     <>
       <div className="movieCard">
-        <button
-          onClick={() => {
-            setModalIsOpen(true);
-          }}
-        >
+        <Button onClick={() => setModalIsOpen(true)} type="button">
           <img src={previewImageUrl} alt="" />
-        </button>
+        </Button>
         <h4>{title}</h4>
         <h4>
           {vote_average} by <span>{vote_count}</span>

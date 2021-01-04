@@ -3,6 +3,7 @@ import { UserInfoContext, ACTIONS } from "../App";
 import Modal from "react-modal";
 import { useHistory } from "react-router-dom";
 import MovieCard from "./MovieCard";
+import Button from "./Button";
 
 Modal.setAppElement("#root");
 
@@ -106,38 +107,41 @@ function MovieModal({
         <p>{overview}</p>
         <h3>{release_date}</h3>
         {!userInfoState.isAuth ? (
-          <button onClick={redirectLogin}>Login To Add This</button>
+          <Button onClick={redirectLogin} type="button">
+            Login To Add This
+            {/* <button onClick={redirectLogin}>Login To Add This</button> */}
+          </Button>
         ) : !movieAlreadyIncluded ? (
-          <button onClick={() => addToList()}>Add To List</button>
+          <Button onClick={() => addToList()} type="button">
+            Add To List
+            {/* <button onClick={() => addToList()}>Add To List</button> */}
+          </Button>
         ) : (
           <>
-            <button
-              onClick={() => {
-                toggleWatched();
-              }}
-            >
+            <Button onClick={toggleWatched} type="button">
               Mark as {movieAlreadyIncluded.watched ? `unwatched` : `watched`}
-            </button>
-            <button
-              onClick={() => {
-                deleteFromList();
-              }}
-            >
+              {/* <button onClick={() => {toggleWatched();}}>
+              Mark as {movieAlreadyIncluded.watched ? `unwatched` : `watched`}
+              </button> */}
+            </Button>
+            <Button onClick={deleteFromList} type="button">
               Delete From List
-            </button>
+              {/* <button onClick={() => {deleteFromList();}}>
+              Delete From List
+              </button> */}
+            </Button>
           </>
         )}
         <br />
         {/* only for MyList */}
         {showSimilarMovies()}
         <br />
-        <button
-          onClick={() => {
-            setModalIsOpen(false);
-          }}
-        >
+        <Button onClick={() => setModalIsOpen(false)} type="button">
           Close
-        </button>
+          {/* <button onClick={() => {setModalIsOpen(false);}}>
+            Close
+          </button> */}
+        </Button>
       </Modal>
     </div>
   );

@@ -11,37 +11,40 @@ function Navbar() {
   };
   return (
     <div>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/Discover">Discover</Link>
-          </li>
-          <li>
-            <Link to="/Search">Search</Link>
-          </li>
-          {userInfoContext.userInfoState.isAuth && (
+      <div className="flex">
+        <h1>MovieList</h1>
+        <nav>
+          <ul>
             <li>
-              <Link to="/MyList">My List</Link>
+              <Link to="/">Home</Link>
             </li>
-          )}
-          <li>
-            <Link
-              to="/Login"
-              onClick={() => {
-                if (userInfoContext.userInfoState.isAuth) {
-                  userInfoContext.userInfoDispatch({ type: ACTIONS.LOG_OUT });
-                  deleteJwtToken();
-                }
-              }}
-            >
-              {userInfoContext.userInfoState.isAuth ? `Logout` : `Login`}
-            </Link>
-          </li>
-        </ul>
-      </nav>
+            <li>
+              <Link to="/Discover">Discover</Link>
+            </li>
+            <li>
+              <Link to="/Search">Search</Link>
+            </li>
+            {userInfoContext.userInfoState.isAuth && (
+              <li>
+                <Link to="/MyList">My List</Link>
+              </li>
+            )}
+            <li>
+              <Link
+                to="/Login"
+                onClick={() => {
+                  if (userInfoContext.userInfoState.isAuth) {
+                    userInfoContext.userInfoDispatch({ type: ACTIONS.LOG_OUT });
+                    deleteJwtToken();
+                  }
+                }}
+              >
+                {userInfoContext.userInfoState.isAuth ? `Logout` : `Login`}
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
   );
 }
