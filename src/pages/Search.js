@@ -1,33 +1,32 @@
 import React, { useState } from "react";
 import Collection from "../components/Collection";
 import Button from "../components/Button";
+import { FaSearch } from "react-icons/fa";
 
 function Search() {
   const [query, setQuery] = useState("");
   const [submit, setSubmit] = useState("");
 
-  const handleInputChange = (event) => {
+  const onInputChange = (event) => {
     let input = encodeURIComponent(event.target.value);
     setQuery(input);
   };
 
-  const handleSubmit = (event) => {
+  const onSubmit = (event) => {
     event.preventDefault();
     setSubmit(query);
   };
 
   return (
     <div>
-      <h3>Search!</h3>
-      <form action="" onSubmit={(e) => handleSubmit(e)}>
+      <form action="" onSubmit={(e) => onSubmit(e)}>
         <input
           type="text"
           placeholder="search.."
-          onChange={(e) => handleInputChange(e)}
+          onChange={(e) => onInputChange(e)}
         />
         <Button type="submit">
-          Search
-          {/* <input type="submit" value="Search" /> */}
+          <FaSearch />
         </Button>
       </form>
       {/* the following condition prevents Collection/ from rendering at first */}

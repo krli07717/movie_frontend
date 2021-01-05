@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { UserInfoContext, ACTIONS } from "../App";
 import { backendInstance as axios } from "../utils/axios";
-import Button from "../components/Button";
+import Form from "../components/Form";
 
 function Register() {
   const { userInfoDispatch } = useContext(UserInfoContext);
@@ -39,29 +39,11 @@ function Register() {
 
   return (
     <div>
-      <form action="" onSubmit={(e) => onRegisterSubmit(e)}>
-        <input
-          type="email"
-          name="email"
-          placeholder="email"
-          onChange={(e) => onInputChange(e)}
-          required
-        />
-        <br />
-        <input
-          type="password"
-          name="password"
-          placeholder="password"
-          onChange={(e) => onInputChange(e)}
-          minLength="4"
-          required
-        />
-        <br />
-        <Button type="submit">
-          Register
-          {/* <input type="submit" value="Register" /> */}
-        </Button>
-      </form>
+      <Form
+        onFormSubmit={onRegisterSubmit}
+        onInputChange={onInputChange}
+        SubmitButtonText="Register"
+      />
       {registerError && <h5>Email already taken</h5>}
     </div>
   );

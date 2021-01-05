@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { UserInfoContext, ACTIONS } from "../App";
 import { backendInstance as axios } from "../utils/axios";
 import { Link } from "react-router-dom";
-import Button from "../components/Button";
+import Form from "../components/Form";
 
 function Login() {
   const { userInfoState, userInfoDispatch } = useContext(UserInfoContext);
@@ -39,28 +39,11 @@ function Login() {
 
   return (
     <div>
-      <form action="" onSubmit={(e) => onLoginSubmit(e)}>
-        <input
-          type="email"
-          name="email"
-          placeholder="email"
-          onChange={(e) => onInputChange(e)}
-          required
-        />
-        <br />
-        <input
-          type="password"
-          name="password"
-          placeholder="password"
-          onChange={(e) => onInputChange(e)}
-          required
-        />
-        <br />
-        <Button type="submit">
-          Log in
-          {/* <input type="submit" value="Log in" /> */}
-        </Button>
-      </form>
+      <Form
+        onFormSubmit={onLoginSubmit}
+        onInputChange={onInputChange}
+        SubmitButtonText="Log in"
+      />
       {loginError && <h5>Wrong Combinations</h5>}
       <div>
         <h3>Not yet registered?</h3>

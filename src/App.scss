@@ -22,6 +22,12 @@ footer {
   flex-wrap: wrap;
 }
 
+.navbar .flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .movieCard {
   display: inline-block;
 }

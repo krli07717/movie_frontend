@@ -77,14 +77,6 @@ function Collection({ collectionName, collectionAPI, searchQuery, movieId }) {
     ) : null;
   };
 
-  // <button onClick={() => setPages((prevPage) => prevPage + 1)}>
-  //   <h1>Load More</h1>
-  // </button>;
-
-  const noResults = () => {
-    return noSearchResults ? <h3>No Results Found</h3> : null;
-  };
-
   useEffect(() => {
     getCollection(pages);
   }, [pages]);
@@ -99,7 +91,7 @@ function Collection({ collectionName, collectionAPI, searchQuery, movieId }) {
           ) : null
         )}
       </div>
-      {noResults()}
+      {noSearchResults && <h3>No Results Found</h3>}
       {showLoadButton()}
     </section>
   );

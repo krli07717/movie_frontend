@@ -17,13 +17,6 @@ function Discover() {
 
   return (
     <>
-      <div>
-        <h3>
-          <span>{userInfoState.isAuth && `Welcome Back User! `}</span>
-          <br />
-          Discover...
-        </h3>
-      </div>
       {collections.map((collection, index) => {
         return <Collection key={index} {...collection} />;
       })}

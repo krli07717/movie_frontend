@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserInfoContext, ACTIONS } from "../App";
 import { backendInstance as axios } from "../utils/axios";
+import { GiPopcorn } from "react-icons/gi";
 
 function Navbar() {
   const userInfoContext = useContext(UserInfoContext);
@@ -10,14 +11,19 @@ function Navbar() {
     return;
   };
   return (
-    <div>
+    <div className="navbar">
       <div className="flex">
-        <h1>MovieList</h1>
+        <h1>
+          MovieList
+          <GiPopcorn />
+        </h1>
         <nav>
           <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
+            {!userInfoContext.userInfoState.isAuth && (
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+            )}
             <li>
               <Link to="/Discover">Discover</Link>
             </li>

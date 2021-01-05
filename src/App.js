@@ -132,7 +132,7 @@ function App() {
         <Layout>
           <Switch>
             <Route path="/" exact>
-              <Home />
+              {userInfo.isAuth ? <Redirect exact to="/Discover" /> : <Home />}
             </Route>
             <Route path="/Discover">
               <Discover />

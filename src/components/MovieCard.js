@@ -38,7 +38,7 @@ function MovieCard({
     similar,
   };
   return (
-    <>
+    <div>
       <div className="movieCard">
         <Button onClick={() => setModalIsOpen(true)} type="button">
           <img src={previewImageUrl} alt="" />
@@ -49,7 +49,7 @@ function MovieCard({
         </h4>
       </div>
       <MovieModal {...modalProps} />
-    </>
+    </div>
   );
 }
 

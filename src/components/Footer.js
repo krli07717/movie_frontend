@@ -1,5 +1,6 @@
 import React from "react";
 import tmdblogo from "../logo_tmdb.svg";
+import { FaGithub, FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 
 function Footer() {
   return (
@@ -10,27 +11,38 @@ function Footer() {
           <h3>Powered by TMDB api</h3>
           <h3>
             Check out source code for{" "}
-            <a href="https://github.com/krli07717/movie_frontend">Frontend</a> /{" "}
-            <a href="https://github.com/krli07717/movie_backend">Backend</a>
+            <a
+              target="_blank"
+              href="https://github.com/krli07717/movie_frontend"
+            >
+              Frontend
+            </a>
+            /
+            <a
+              target="_blank"
+              href="https://github.com/krli07717/movie_backend"
+            >
+              Backend
+            </a>
           </h3>
         </div>
         <div>
-          <a href="https://www.themoviedb.org/">
+          <a target="_blank" href="https://www.themoviedb.org/">
             <img src={tmdblogo} alt="themoviedb" />
           </a>
         </div>
         <div className="social">
           <a href="#">
-            <i className="fab fa-github fa-2x">github</i>
+            <FaGithub />
           </a>
           <a href="#">
-            <i className="fab fa-facebook fa-2x">facebook</i>
+            <FaFacebook />
           </a>
           <a href="#">
-            <i className="fab fa-instagram fa-2x">instagram</i>
+            <FaInstagram />
           </a>
           <a href="#">
-            <i className="fab fa-twitter fa-2x">twitter</i>
+            <FaTwitter />
           </a>
         </div>
       </div>
