@@ -16,11 +16,11 @@ function Discover() {
   ];
 
   return (
-    <>
+    <div className="discover">
       {collections.map((collection, index) => {
         return <Collection key={index} {...collection} />;
       })}
-    </>
+    </div>
   );
 }
 

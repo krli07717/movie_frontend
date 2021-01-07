@@ -8,14 +8,14 @@ function MyList() {
   console.log("States @ MyList:", userInfoState);
   return (
     <div>
-      <div>
+      {/* <div>
         {userInfoState.MovieList.map(({ id, watched }, index) => (
           <h3 key={index}>
             {id} watched: {`${watched}`}
           </h3>
         ))}
-      </div>
-      <div>
+      </div> */}
+      <div className="myList">
         {userInfoState.MovieList.length ? (
           userInfoState.MovieList.map(({ id }) => (
             <Collection

@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { UserInfoContext, ACTIONS } from "../App";
 import { backendInstance as axios } from "../utils/axios";
 import { Link } from "react-router-dom";
+import Button from "../components/Button";
 import Form from "../components/Form";
 
 function Login() {
@@ -38,16 +39,19 @@ function Login() {
   };
 
   return (
-    <div>
-      <Form
-        onFormSubmit={onLoginSubmit}
-        onInputChange={onInputChange}
-        SubmitButtonText="Log in"
-      />
-      {loginError && <h5>Wrong Combinations</h5>}
-      <div>
+    <div className="container item_center">
+      <div className="form_container">
+        <h1>Login</h1>
+        <Form
+          onFormSubmit={onLoginSubmit}
+          onInputChange={onInputChange}
+          SubmitButtonText="Log in"
+        />
+        {loginError && <h5>Wrong Combinations</h5>}
         <h3>Not yet registered?</h3>
-        <Link to="/Register">Register!</Link>
+        <Button type="button">
+          <Link to="/Register">Register!</Link>
+        </Button>
       </div>
     </div>
   );

@@ -38,13 +38,16 @@ function Register() {
   };
 
   return (
-    <div>
-      <Form
-        onFormSubmit={onRegisterSubmit}
-        onInputChange={onInputChange}
-        SubmitButtonText="Register"
-      />
-      {registerError && <h5>Email already taken</h5>}
+    <div className="container item_center">
+      <div className="form_container">
+        <h1>Register</h1>
+        <Form
+          onFormSubmit={onRegisterSubmit}
+          onInputChange={onInputChange}
+          SubmitButtonText="Register"
+        />
+        {registerError && <h3>Email already taken</h3>}
+      </div>
     </div>
   );
 }

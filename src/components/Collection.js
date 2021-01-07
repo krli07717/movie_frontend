@@ -82,9 +82,9 @@ function Collection({ collectionName, collectionAPI, searchQuery, movieId }) {
   }, [pages]);
 
   return (
-    <section>
+    <section className="collection">
       <h2>{collectionName}</h2>
-      <div className="collection">
+      <div className="movie_rows">
         {collection.map((movieInfos) =>
           movieInfos.poster_path ? (
             <MovieCard key={movieInfos.id} {...movieInfos} />

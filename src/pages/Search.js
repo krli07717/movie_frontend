@@ -18,17 +18,19 @@ function Search() {
   };
 
   return (
-    <div>
-      <form action="" onSubmit={(e) => onSubmit(e)}>
-        <input
-          type="text"
-          placeholder="search.."
-          onChange={(e) => onInputChange(e)}
-        />
-        <Button type="submit">
-          <FaSearch />
-        </Button>
-      </form>
+    <div className="container">
+      <div>
+        <form className="search_form" action="" onSubmit={(e) => onSubmit(e)}>
+          <input
+            type="text"
+            placeholder="search.."
+            onChange={(e) => onInputChange(e)}
+          />
+          <Button type="submit">
+            <FaSearch size="15" />
+          </Button>
+        </form>
+      </div>
       {/* the following condition prevents Collection/ from rendering at first */}
       {submit && (
         <Collection

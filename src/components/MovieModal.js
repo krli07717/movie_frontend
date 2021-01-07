@@ -53,9 +53,9 @@ function MovieModal({
 
   const showSimilarMovies = () => {
     return similar && similar.results.length ? (
-      <div>
-        <h3>You may also like...</h3>
-        <div className="recommmendations" style={recommendationsStyle}>
+      <div className="recommendations">
+        <h2>You may also like...</h2>
+        <div className="movie_rows">
           {similar.results.map(
             ({
               id,
@@ -86,9 +86,19 @@ function MovieModal({
     ) : null;
   };
 
-  const recommendationsStyle = {
-    display: "flex",
-    flexWrap: "wrap",
+  const modalStyles = {
+    overlay: {
+      backgroundColor: "rgba(211, 150, 150, 0.35)",
+      maxWidth: "1300px",
+      margin: "0 auto",
+    },
+    content: {
+      border: "none",
+      backgroundColor: "transparent",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+    },
   };
 
   useEffect(() => {
@@ -100,41 +110,48 @@ function MovieModal({
 
   return (
     <div>
-      <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
-        <div>
-          <img src={modalImageUrl} alt="" />
-          {backdropImageUrl && <img src={backdropImageUrl} alt="" />}
-        </div>
-        <div>
-          <h1>{title}</h1>
-          <p>{overview}</p>
-          <h3>{release_date}</h3>
-        </div>
-        <div>
-          {!userInfoState.isAuth ? (
-            <Button onClick={redirectLogin} type="button">
-              Login To Add This
-            </Button>
-          ) : !movieAlreadyIncluded ? (
-            <Button onClick={() => addToList()} type="button">
-              Add To List
-            </Button>
-          ) : (
-            <>
-              <Button onClick={toggleWatched} type="button">
-                Mark as {movieAlreadyIncluded.watched ? `unwatched` : `watched`}
+      <Modal
+        isOpen={modalIsOpen}
+        style={modalStyles}
+        onRequestClose={() => setModalIsOpen(false)}
+      >
+        <div className="modal_content">
+          <div>
+            <img src={modalImageUrl} alt="" />
+          </div>
+          <div>{backdropImageUrl && <img src={backdropImageUrl} alt="" />}</div>
+          <div className="modal_text">
+            <h1>{title}</h1>
+            <h5>({release_date})</h5>
+            <h4>{overview}</h4>
+          </div>
+          <div className="modal_buttons">
+            {!userInfoState.isAuth ? (
+              <Button onClick={redirectLogin} type="button">
+                Login To Add This
               </Button>
-              <Button onClick={deleteFromList} type="button">
-                Delete From List
+            ) : !movieAlreadyIncluded ? (
+              <Button onClick={() => addToList()} type="button">
+                Add To List
               </Button>
-            </>
-          )}
-          <Button onClick={() => setModalIsOpen(false)} type="button">
-            Close
-          </Button>
+            ) : (
+              <>
+                <Button onClick={toggleWatched} type="button">
+                  Mark as{" "}
+                  {movieAlreadyIncluded.watched ? `unwatched` : `watched`}
+                </Button>
+                <Button onClick={deleteFromList} type="button">
+                  Delete From List
+                </Button>
+              </>
+            )}
+            <Button onClick={() => setModalIsOpen(false)} type="button">
+              Close
+            </Button>
+          </div>
+          {/* only for MyList */}
+          {showSimilarMovies()}
         </div>
-        {/* only for MyList */}
-        {showSimilarMovies()}
       </Modal>
     </div>
   );

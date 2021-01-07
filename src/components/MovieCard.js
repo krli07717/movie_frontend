@@ -39,7 +39,7 @@ function MovieCard({
   };
   return (
     <div>
-      <div className="movieCard">
+      <div className="movie_card">
         <Button onClick={() => setModalIsOpen(true)} type="button">
           <img src={previewImageUrl} alt="" />
         </Button>
