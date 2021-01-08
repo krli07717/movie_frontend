@@ -54,7 +54,7 @@ h5 {
 }
 
 .container {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -67,6 +67,7 @@ main {
 button {
   color: $primary--color;
   border: none;
+  outline: none;
   cursor: pointer;
   padding: 0.7em 1.5em;
   font-size: 2em;
@@ -238,16 +239,90 @@ footer {
   justify-content: center;
   text-align: center;
   .movie_card {
-    display: inline-block;
-    button {
-      padding: 0;
-      background: none;
-      img {
+    margin: 10px 15px;
+    max-width: 173px;
+    max-height: 264px;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    transition: 0.3s ease-out;
+    cursor: pointer;
+    &:hover {
+      transform: translateY(-2px);
+      &::before {
+        opacity: 1;
+        // make the link still clickable
+        pointer-events: none;
+      }
+      .status {
+        opacity: 1;
+      }
+      .info {
+        opacity: 1;
+      }
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(black, 0.65);
+      z-index: 2;
+      transition: 0.5s;
+      opacity: 0;
+    }
+    .button_img {
+      button {
+        padding: 0;
+        background: none;
+        margin: 0;
+        img {
+          display: block;
+          max-width: 173px;
+          max-height: 264px;
+        }
+      }
+    }
+    .status {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      opacity: 0;
+      z-index: 3;
+      // color: rgb(62, 163, 107);
+    }
+    .info {
+      width: 170px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      z-index: 3;
+      h5 {
+        display: inline-block;
+        padding: 2px 5px;
+        border-radius: 5px;
+        // font-size: 16px;
+        // color based on rating
+        &.high {
+          background-color: rgb(248, 33, 33);
+        }
+        &.decent {
+          background-color: rgb(250, 165, 6);
+        }
+        &.mid {
+          background-color: rgb(207, 204, 5);
+        }
+        &.low {
+          background-color: rgb(73, 119, 21);
+        }
+      }
+      span {
         display: block;
-        max-width: 185px;
-        max-height: 264px;
-        width: auto;
-        height: auto;
+        font-size: 120%;
       }
     }
   }
@@ -313,9 +388,22 @@ footer {
 }
 
 .myList {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  .filter_buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .myList_rows {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .noList {
+    text-align: center;
+    min-height: 90vh;
+    display: grid;
+    place-items: center;
+  }
 }
 
 .recommendations {
@@ -332,9 +420,31 @@ footer {
   text-align: center;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: rgb(44, 2, 18);
+  border-radius: 1px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    rgba(243, 230, 234, 0.182),
+    rgba(241, 100, 147, 0.658)
+  );
+  border-radius: 4px;
+}
+
 // media-queries
 
 @media screen and (max-width: 600px) {
+  button {
+    padding: 0.7em 1.5em;
+    font-size: 1.5em;
+    border-radius: 8px;
+    margin: 15px 15px;
+    box-shadow: 0 8px 6px -6px rgb(31, 27, 27);
+  }
+
   .navbar {
     .flex {
       justify-content: center;
@@ -359,4 +469,18 @@ footer {
       }
     }
   }
+
+  .movie_rows .movie_card .status {
+    padding: 2px 2px;
+    top: 0;
+    right: 0;
+    background-color: rgba(44, 37, 37, 0.692);
+    opacity: 1;
+  }
 }
+
+// rwd moviecard sizes & button styles
+// zh-TW
+
+// myList mutiple selects
+// top right close button modal

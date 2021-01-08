@@ -2,8 +2,7 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserInfoContext, ACTIONS } from "../App";
 import { backendInstance as axios } from "../utils/axios";
-import { GiPopcorn } from "react-icons/gi";
-import { FaListUl } from "react-icons/fa";
+import { GiPopcorn, GiHamburgerMenu } from "react-icons/gi";
 
 function Navbar() {
   const userInfoContext = useContext(UserInfoContext);
@@ -25,30 +24,39 @@ function Navbar() {
           className="hamburger"
           onClick={() => setNavExpand((prev) => !prev)}
         >
-          <FaListUl size="20" />
+          <GiHamburgerMenu size="20" />
         </div>
         <nav>
           <ul className={navExpand ? "navExpand" : null}>
             {!userInfoContext.userInfoState.isAuth && (
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/" onClick={() => setNavExpand(false)}>
+                  Home
+                </Link>
               </li>
             )}
             <li>
-              <Link to="/Discover">Discover</Link>
+              <Link to="/Discover" onClick={() => setNavExpand(false)}>
+                Discover
+              </Link>
             </li>
             <li>
-              <Link to="/Search">Search</Link>
+              <Link to="/Search" onClick={() => setNavExpand(false)}>
+                Search
+              </Link>
             </li>
             {userInfoContext.userInfoState.isAuth && (
               <li>
-                <Link to="/MyList">My List</Link>
+                <Link to="/MyList" onClick={() => setNavExpand(false)}>
+                  My List
+                </Link>
               </li>
             )}
             <li>
               <Link
                 to="/Login"
                 onClick={() => {
+                  setNavExpand(false);
                   if (userInfoContext.userInfoState.isAuth) {
                     userInfoContext.userInfoDispatch({ type: ACTIONS.LOG_OUT });
                     deleteJwtToken();

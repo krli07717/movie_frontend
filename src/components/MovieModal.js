@@ -91,6 +91,8 @@ function MovieModal({
       backgroundColor: "rgba(211, 150, 150, 0.35)",
       maxWidth: "1300px",
       margin: "0 auto",
+      // position: "static",
+      zIndex: "4",
     },
     content: {
       border: "none",
