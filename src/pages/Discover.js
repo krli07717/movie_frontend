@@ -10,9 +10,9 @@ import Collection from "../components/Collection";
 function Discover() {
   const { userInfoState } = useContext(UserInfoContext);
   const collections = [
-    { collectionName: "Now playing...", collectionAPI: "NOW_PLAYING" },
-    { collectionName: "Upcoming...", collectionAPI: "UPCOMING" },
-    { collectionName: "Popular...", collectionAPI: "POPULAR" },
+    { collectionName: "現正上映", collectionAPI: "NOW_PLAYING" },
+    { collectionName: "即將上映", collectionAPI: "UPCOMING" },
+    { collectionName: "人氣排行", collectionAPI: "POPULAR" },
   ];
 
   return (

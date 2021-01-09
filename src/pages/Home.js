@@ -8,12 +8,12 @@ function Home() {
       <section className="hero1 item_center">
         <div className="container">
           <div>
-            <h1>Save your movie list now</h1>
-            <h2>Easy sign up, simple usage.</h2>
+            <h1>編輯屬於你的電影清單</h1>
+            <h2>立即加入</h2>
           </div>
           <div>
             <Button type="button">
-              <Link to="/Register">Register</Link>
+              <Link to="/Register">註冊</Link>
             </Button>
           </div>
         </div>

@@ -1,4 +1,4 @@
-$primary--color: rgba(245, 245, 245, 0.945);
+$primary--color: rgba(245, 245, 245, 0.845);
 $bg--color: rgb(44, 2, 18);
 $btn--primary: rgba(175, 26, 26, 0.644);
 // base
@@ -98,6 +98,9 @@ input {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    h1 {
+      white-space: nowrap;
+    }
     .hamburger {
       display: none;
       cursor: pointer;
@@ -107,6 +110,7 @@ input {
       justify-content: flex-start;
       padding: 0 20px;
       flex: 0 30%;
+      // 30%
       span {
         display: grid;
         place-items: center;
@@ -120,6 +124,7 @@ input {
       float: right;
     }
     li {
+      text-align: center;
       display: inline-block;
       margin: 10px 10px;
     }
@@ -229,7 +234,13 @@ footer {
 .collection {
   text-align: center;
   h2 {
-    color: rgba(245, 245, 27, 0.925);
+    max-width: 1200px;
+    display: inline-block;
+    width: 55vw;
+    color: rgba(245, 212, 27, 0.753);
+    position: relative;
+    border-bottom: 3px solid rgba(254, 255, 240, 0.671);
+    margin: 10px 0;
   }
 }
 
@@ -255,9 +266,11 @@ footer {
         pointer-events: none;
       }
       .status {
+        pointer-events: none;
         opacity: 1;
       }
       .info {
+        pointer-events: none;
         opacity: 1;
       }
     }
@@ -334,7 +347,7 @@ footer {
   }
   .auth_form {
     margin: 25px 0;
-    height: 180px;
+    height: 230px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -344,6 +357,10 @@ footer {
       display: flex;
       justify-content: space-around;
       align-items: center;
+    }
+    h5 {
+      color: rgba(240, 230, 140, 0.904);
+      margin: 5px 0;
     }
   }
 }
@@ -397,6 +414,11 @@ footer {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    .collection {
+      h2 {
+        display: none;
+      }
+    }
   }
   .noList {
     text-align: center;
@@ -436,15 +458,7 @@ footer {
 
 // media-queries
 
-@media screen and (max-width: 600px) {
-  button {
-    padding: 0.7em 1.5em;
-    font-size: 1.5em;
-    border-radius: 8px;
-    margin: 15px 15px;
-    box-shadow: 0 8px 6px -6px rgb(31, 27, 27);
-  }
-
+@media screen and (max-width: 577px) {
   .navbar {
     .flex {
       justify-content: center;
@@ -455,11 +469,13 @@ footer {
         display: none;
         flex-direction: column;
         flex: 0 20%;
+        // 20%
       }
       .hamburger {
         display: block;
         padding: 0 10px;
-        flex: 0 47%;
+        flex: 0 52%;
+        // 47%
         & > * {
           float: right;
         }
@@ -470,17 +486,57 @@ footer {
     }
   }
 
-  .movie_rows .movie_card .status {
-    padding: 2px 2px;
-    top: 0;
-    right: 0;
-    background-color: rgba(44, 37, 37, 0.692);
-    opacity: 1;
+  .movie_rows {
+    .movie_card {
+      margin: 3px 5px;
+      max-width: 95px;
+      max-height: 155px;
+      .info {
+        width: 95px;
+      }
+      .button_img {
+        button {
+          img {
+            max-width: 95px;
+            max-height: 155px;
+          }
+        }
+      }
+      .status {
+        padding: 2px 2px;
+        top: 0;
+        right: 0;
+        background-color: rgba(44, 37, 37, 0.692);
+        opacity: 1;
+      }
+    }
+  }
+
+  .collection {
+    h2 {
+      width: 90vw;
+    }
+    button {
+      padding: 0.5em 1.5em;
+      font-size: 1.5em;
+      border-radius: 8px;
+      margin: 7px 10px;
+      box-shadow: 0 8px 6px -6px rgb(31, 27, 27);
+    }
+  }
+
+  .myList,
+  .modal_content {
+    button {
+      padding: 0.5em 1.5em;
+      font-size: 1.5em;
+      border-radius: 8px;
+      margin: 7px 10px;
+      box-shadow: 0 8px 6px -6px rgb(31, 27, 27);
+    }
   }
 }
 
-// rwd moviecard sizes & button styles
-// zh-TW
-
-// myList mutiple selects
+// react-router code splitting performance
+// pwa
 // top right close button modal

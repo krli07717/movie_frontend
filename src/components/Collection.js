@@ -72,7 +72,7 @@ function Collection({ collectionName, collectionAPI, searchQuery, movieId }) {
         onClick={() => setPages((prevPage) => prevPage + 1)}
         type="button"
       >
-        Load More
+        更多
       </Button>
     ) : null;
   };
@@ -91,7 +91,7 @@ function Collection({ collectionName, collectionAPI, searchQuery, movieId }) {
           ) : null
         )}
       </div>
-      {noSearchResults && <h3>No Results Found</h3>}
+      {noSearchResults && <h3>沒有搜尋結果</h3>}
       {showLoadButton()}
     </section>
   );

@@ -5,7 +5,7 @@ import Button from "../components/Button";
 
 function MyList() {
   const { userInfoState, userInfoDispatch } = useContext(UserInfoContext);
-  const [filterList, setFilterList] = useState(false);
+  const [filterList, setFilterList] = useState(true);
   const [notWatchedOnly, setNotWatchedOnly] = useState(true);
 
   console.log("States @ MyList:", userInfoState);
@@ -15,7 +15,7 @@ function MyList() {
         <>
           <div className="filter_buttons">
             <Button type="button" onClick={() => setFilterList(false)}>
-              All
+              全部電影
             </Button>
             <Button
               type="button"
@@ -24,7 +24,7 @@ function MyList() {
                 setNotWatchedOnly((prev) => !prev);
               }}
             >
-              {notWatchedOnly ? "Show Watched" : "Show To-Watch"}
+              {notWatchedOnly ? "已觀看" : "待觀看"}
             </Button>
           </div>
           <div className="myList_rows">
@@ -48,7 +48,7 @@ function MyList() {
         </>
       ) : (
         <div className="noList">
-          <h1>You don't have any to-watch movie</h1>
+          <h1>您尚未加入任何電影</h1>
         </div>
       )}
     </div>

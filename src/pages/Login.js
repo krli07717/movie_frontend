@@ -41,16 +41,18 @@ function Login() {
   return (
     <div className="container item_center">
       <div className="form_container">
-        <h1>Login</h1>
+        <h1>登入</h1>
         <Form
           onFormSubmit={onLoginSubmit}
           onInputChange={onInputChange}
-          SubmitButtonText="Log in"
+          errorStatus={loginError}
+          errorMessage="信箱或密碼不正確"
+          SubmitButtonText="登入"
         />
-        {loginError && <h5>Wrong Combinations</h5>}
-        <h3>Not yet registered?</h3>
+        {/* {loginError && <h5>信箱或密碼不正確</h5>}*/}
+        <h3>新用戶？</h3>
         <Button type="button">
-          <Link to="/Register">Register!</Link>
+          <Link to="/Register">註冊</Link>
         </Button>
       </div>
     </div>

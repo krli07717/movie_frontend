@@ -15,7 +15,7 @@ function Navbar() {
     <div className="navbar">
       <div className="container flex">
         <div className="logo">
-          <h1>MovieList</h1>
+          <h1>電影清單</h1>
           <span>
             <GiPopcorn size="20" />
           </span>
@@ -26,48 +26,52 @@ function Navbar() {
         >
           <GiHamburgerMenu size="20" />
         </div>
-        <nav>
-          <ul className={navExpand ? "navExpand" : null}>
-            {!userInfoContext.userInfoState.isAuth && (
+        <div>
+          <nav>
+            <ul className={navExpand ? "navExpand" : null}>
+              {!userInfoContext.userInfoState.isAuth && (
+                <li>
+                  <Link to="/" onClick={() => setNavExpand(false)}>
+                    首頁
+                  </Link>
+                </li>
+              )}
               <li>
-                <Link to="/" onClick={() => setNavExpand(false)}>
-                  Home
+                <Link to="/Discover" onClick={() => setNavExpand(false)}>
+                  探索
                 </Link>
               </li>
-            )}
-            <li>
-              <Link to="/Discover" onClick={() => setNavExpand(false)}>
-                Discover
-              </Link>
-            </li>
-            <li>
-              <Link to="/Search" onClick={() => setNavExpand(false)}>
-                Search
-              </Link>
-            </li>
-            {userInfoContext.userInfoState.isAuth && (
               <li>
-                <Link to="/MyList" onClick={() => setNavExpand(false)}>
-                  My List
+                <Link to="/Search" onClick={() => setNavExpand(false)}>
+                  搜尋
                 </Link>
               </li>
-            )}
-            <li>
-              <Link
-                to="/Login"
-                onClick={() => {
-                  setNavExpand(false);
-                  if (userInfoContext.userInfoState.isAuth) {
-                    userInfoContext.userInfoDispatch({ type: ACTIONS.LOG_OUT });
-                    deleteJwtToken();
-                  }
-                }}
-              >
-                {userInfoContext.userInfoState.isAuth ? `Logout` : `Login`}
-              </Link>
-            </li>
-          </ul>
-        </nav>
+              {userInfoContext.userInfoState.isAuth && (
+                <li>
+                  <Link to="/MyList" onClick={() => setNavExpand(false)}>
+                    我的清單
+                  </Link>
+                </li>
+              )}
+              <li>
+                <Link
+                  to="/Login"
+                  onClick={() => {
+                    setNavExpand(false);
+                    if (userInfoContext.userInfoState.isAuth) {
+                      userInfoContext.userInfoDispatch({
+                        type: ACTIONS.LOG_OUT,
+                      });
+                      deleteJwtToken();
+                    }
+                  }}
+                >
+                  {userInfoContext.userInfoState.isAuth ? `登出` : `登入`}
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
     </div>
   );

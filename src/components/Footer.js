@@ -15,12 +15,14 @@ function Footer() {
           <div className="repos">
             <a
               target="_blank"
+              rel="noreferrer"
               href="https://github.com/krli07717/movie_frontend"
             >
               Frontend
             </a>
             <a
               target="_blank"
+              rel="noreferrer"
               href="https://github.com/krli07717/movie_backend"
             >
               Backend
@@ -28,40 +30,64 @@ function Footer() {
           </div>
         </div>
         <div className="tmdb box">
-          <a target="_blank" href="https://www.themoviedb.org/">
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href="https://www.themoviedb.org/"
+          >
             <img className="tmdblogo" src={tmdblogo} alt="themoviedb" />
           </a>
         </div>
         <div className="box">
           <div className="links">
-            <a href="#">
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://github.com/krli07717/movie_frontend"
+            >
               <h4>Terms of Use</h4>
             </a>
-            <a href="#">
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://github.com/krli07717/movie_frontend"
+            >
               <h4>Corporate Information</h4>
             </a>
-            <a href="#">
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://github.com/krli07717/movie_frontend"
+            >
               <h4>Media Center</h4>
             </a>
           </div>
           <div className="icons">
             <div>
-              <a href="#">
+              <a target="_blank" rel="noreferrer" href="https://github.com/">
                 <FaGithub size="30" />
               </a>
             </div>
             <div>
-              <a href="#">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="https://www.facebook.com/"
+              >
                 <FaFacebook size="30" />
               </a>
             </div>
             <div>
-              <a href="#">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="https://www.instagram.com/"
+              >
                 <FaInstagram size="30" />
               </a>
             </div>
             <div>
-              <a href="#">
+              <a target="_blank" rel="noreferrer" href="https://twitter.com/">
                 <FaTwitter size="30" />
               </a>
             </div>

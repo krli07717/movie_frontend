@@ -3,7 +3,13 @@ import Button from "./Button";
 import { HiOutlineMail } from "react-icons/hi";
 import { AiOutlineLock } from "react-icons/ai";
 
-const Form = ({ onFormSubmit, onInputChange, SubmitButtonText }) => {
+const Form = ({
+  onFormSubmit,
+  onInputChange,
+  SubmitButtonText,
+  errorStatus,
+  errorMessage,
+}) => {
   return (
     <form className="auth_form" action="" onSubmit={(e) => onFormSubmit(e)}>
       <div>
@@ -11,7 +17,7 @@ const Form = ({ onFormSubmit, onInputChange, SubmitButtonText }) => {
         <input
           type="email"
           name="email"
-          placeholder="email"
+          placeholder="電子信箱"
           onChange={(e) => onInputChange(e)}
           required
         />
@@ -21,11 +27,12 @@ const Form = ({ onFormSubmit, onInputChange, SubmitButtonText }) => {
         <input
           type="password"
           name="password"
-          placeholder="password"
+          placeholder="密碼"
           onChange={(e) => onInputChange(e)}
           required
         />
       </div>
+      {errorStatus && <h5>{errorMessage}</h5>}
       <div>
         <Button type="submit">{SubmitButtonText}</Button>
       </div>

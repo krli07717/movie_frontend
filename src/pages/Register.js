@@ -40,13 +40,15 @@ function Register() {
   return (
     <div className="container item_center">
       <div className="form_container">
-        <h1>Register</h1>
+        <h1>註冊</h1>
         <Form
           onFormSubmit={onRegisterSubmit}
           onInputChange={onInputChange}
-          SubmitButtonText="Register"
+          errorStatus={registerError}
+          errorMessage="電子信箱已註冊"
+          SubmitButtonText="註冊"
         />
-        {registerError && <h3>Email already taken</h3>}
+        {/* {registerError && <h3>電子信箱已註冊</h3>} */}
       </div>
     </div>
   );

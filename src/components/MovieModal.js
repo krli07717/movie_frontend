@@ -54,7 +54,7 @@ function MovieModal({
   const showSimilarMovies = () => {
     return similar && similar.results.length ? (
       <div className="recommendations">
-        <h2>You may also like...</h2>
+        <h2>您可能也喜歡..</h2>
         <div className="movie_rows">
           {similar.results.map(
             ({
@@ -130,25 +130,24 @@ function MovieModal({
           <div className="modal_buttons">
             {!userInfoState.isAuth ? (
               <Button onClick={redirectLogin} type="button">
-                Login To Add This
+                登入以加入清單
               </Button>
             ) : !movieAlreadyIncluded ? (
               <Button onClick={() => addToList()} type="button">
-                Add To List
+                加入清單
               </Button>
             ) : (
               <>
                 <Button onClick={toggleWatched} type="button">
-                  Mark as{" "}
-                  {movieAlreadyIncluded.watched ? `unwatched` : `watched`}
+                  {movieAlreadyIncluded.watched ? `未觀看` : `已觀看`}
                 </Button>
                 <Button onClick={deleteFromList} type="button">
-                  Delete From List
+                  刪除
                 </Button>
               </>
             )}
             <Button onClick={() => setModalIsOpen(false)} type="button">
-              Close
+              關閉
             </Button>
           </div>
           {/* only for MyList */}

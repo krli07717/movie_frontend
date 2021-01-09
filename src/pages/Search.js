@@ -23,7 +23,7 @@ function Search() {
         <form className="search_form" action="" onSubmit={(e) => onSubmit(e)}>
           <input
             type="text"
-            placeholder="search.."
+            placeholder="搜尋.."
             onChange={(e) => onInputChange(e)}
           />
           <Button type="submit">
