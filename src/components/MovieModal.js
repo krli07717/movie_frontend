@@ -118,15 +118,15 @@ function MovieModal({
         onRequestClose={() => setModalIsOpen(false)}
       >
         <div className="modal_content">
-          <div>
-            <img src={modalImageUrl} alt="" />
-          </div>
-          <div>{backdropImageUrl && <img src={backdropImageUrl} alt="" />}</div>
           <div className="modal_text">
             <h1>{title}</h1>
             <h5>({release_date})</h5>
             <h4>{overview}</h4>
           </div>
+          <div>
+            <img src={modalImageUrl} alt="" />
+          </div>
+          <div>{backdropImageUrl && <img src={backdropImageUrl} alt="" />}</div>
           <div className="modal_buttons">
             {!userInfoState.isAuth ? (
               <Button onClick={redirectLogin} type="button">

@@ -399,7 +399,7 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.567);
+  background-color: rgba(0, 0, 0, 0.774);
   .modal_text {
     border: 20px solid transparent;
     border-radius: 5px;
@@ -458,6 +458,10 @@ footer {
   img {
     width: 100px;
   }
+}
+
+.pause_scrolling {
+  overflow: hidden;
 }
 
 ::-webkit-scrollbar {
@@ -544,4 +548,4 @@ footer {
   }
 }
 
-// concrete, animated buttons
+// unscrollable besides modal

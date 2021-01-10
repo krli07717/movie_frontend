@@ -1,4 +1,4 @@
-import React, { useState, useContext, Suspense, lazy } from "react";
+import React, { useState, useContext, Suspense, lazy, useEffect } from "react";
 import { UserInfoContext } from "../App";
 // import MovieModal from "./MovieModal";
 import Button from "./Button";
@@ -29,6 +29,15 @@ function MovieCard({
     ? `${backdropImagePrefix}${backdrop_path}`
     : null;
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (modalIsOpen) {
+      document.body.classList.add("pause_scrolling");
+    } else {
+      document.body.classList.remove("pause_scrolling");
+    }
+  }, [modalIsOpen]);
+
   const modalProps = {
     id,
     title,
