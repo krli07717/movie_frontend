@@ -1,6 +1,26 @@
 $primary--color: rgba(245, 245, 245, 0.845);
 $bg--color: rgb(44, 2, 18);
 $btn--primary: rgba(175, 26, 26, 0.644);
+
+@mixin rwd_button {
+  padding: 0.5em 1.5em;
+  font-size: 1.5em;
+  border-radius: 8px;
+  margin: 7px 10px;
+  box-shadow: 0 8px 6px -6px rgb(31, 27, 27);
+}
+
+@mixin flex_center($justify) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: $justify;
+}
+
+@mixin grid_center {
+  display: grid;
+  place-items: center;
+}
+
 // base
 * {
   margin: 0;
@@ -94,9 +114,7 @@ input {
   color: $primary--color;
   width: 100%;
   .flex {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    @include flex_center(space-between);
     align-items: center;
     h1 {
       white-space: nowrap;
@@ -112,8 +130,7 @@ input {
       flex: 0 30%;
       // 30%
       span {
-        display: grid;
-        place-items: center;
+        @include grid_center();
       }
     }
     ul {
@@ -151,9 +168,7 @@ footer {
   height: 100%;
   width: 100%;
   .flex {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    @include flex_center(center);
     align-items: center;
     .box {
       margin: 25px auto;
@@ -174,6 +189,7 @@ footer {
       }
     }
     .tmdblogo {
+      width: 166px;
       height: 120px;
     }
     .links {
@@ -200,7 +216,6 @@ footer {
 
 .home {
   .hero1 {
-    // bg image
     background: linear-gradient(
         to right bottom,
         rgba(243, 227, 233, 0.315),
@@ -228,7 +243,6 @@ footer {
 .discover {
   max-width: 1200px;
   margin: 0 auto;
-  // text-align: center;
 }
 
 .collection {
@@ -245,9 +259,7 @@ footer {
 }
 
 .movie_rows {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  @include flex_center(center);
   text-align: center;
   .movie_card {
     margin: 10px 15px;
@@ -318,8 +330,6 @@ footer {
         display: inline-block;
         padding: 2px 5px;
         border-radius: 5px;
-        // font-size: 16px;
-        // color based on rating
         &.high {
           background-color: rgb(248, 33, 33);
         }
@@ -375,6 +385,12 @@ footer {
   }
 }
 
+.result_rows {
+  h2 {
+    display: none;
+  }
+}
+
 .modal_content {
   color: $primary--color;
   display: flex;
@@ -382,8 +398,6 @@ footer {
   align-items: center;
   background-color: rgba(0, 0, 0, 0.567);
   .modal_text {
-    // background-color: rgba(179, 108, 108, 0.65);
-    // background-color: rgba(0, 0, 0, 0.567);
     border: 20px solid transparent;
     border-radius: 5px;
     h1 {
@@ -398,22 +412,16 @@ footer {
     }
   }
   .modal_buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    @include flex_center(center);
   }
 }
 
 .myList {
   .filter_buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    @include flex_center(center);
   }
   .myList_rows {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    @include flex_center(center);
     .collection {
       h2 {
         display: none;
@@ -423,8 +431,7 @@ footer {
   .noList {
     text-align: center;
     min-height: 90vh;
-    display: grid;
-    place-items: center;
+    @include grid_center();
   }
 }
 
@@ -437,9 +444,17 @@ footer {
 
 .item_center {
   min-height: 90vh;
-  display: grid;
-  place-items: center;
+  @include grid_center();
   text-align: center;
+}
+
+.loading {
+  min-height: 100vh;
+  @include grid_center();
+  background-color: $bg--color;
+  img {
+    width: 100px;
+  }
 }
 
 ::-webkit-scrollbar {
@@ -457,7 +472,6 @@ footer {
 }
 
 // media-queries
-
 @media screen and (max-width: 577px) {
   .navbar {
     .flex {
@@ -469,13 +483,11 @@ footer {
         display: none;
         flex-direction: column;
         flex: 0 20%;
-        // 20%
       }
       .hamburger {
         display: block;
         padding: 0 10px;
         flex: 0 52%;
-        // 47%
         & > * {
           float: right;
         }
@@ -517,26 +529,19 @@ footer {
       width: 90vw;
     }
     button {
-      padding: 0.5em 1.5em;
-      font-size: 1.5em;
-      border-radius: 8px;
-      margin: 7px 10px;
-      box-shadow: 0 8px 6px -6px rgb(31, 27, 27);
+      @include rwd_button();
     }
   }
 
   .myList,
   .modal_content {
     button {
-      padding: 0.5em 1.5em;
-      font-size: 1.5em;
-      border-radius: 8px;
-      margin: 7px 10px;
-      box-shadow: 0 8px 6px -6px rgb(31, 27, 27);
+      @include rwd_button();
     }
   }
 }
 
+// concrete, animated buttons
 // react-router code splitting performance
 // pwa
 // top right close button modal

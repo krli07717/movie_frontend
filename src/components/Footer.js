@@ -1,7 +1,12 @@
 import React from "react";
 import tmdblogo from "../logo_tmdb.svg";
-import { FaGithub, FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
-
+// import { FaGithub, FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
+import {
+  AiOutlineFacebook,
+  AiOutlineGithub,
+  AiOutlineInstagram,
+  AiOutlineTwitter,
+} from "react-icons/ai";
 function Footer() {
   return (
     <footer>
@@ -35,7 +40,13 @@ function Footer() {
             rel="noreferrer"
             href="https://www.themoviedb.org/"
           >
-            <img className="tmdblogo" src={tmdblogo} alt="themoviedb" />
+            <img
+              width="166"
+              height="120"
+              className="tmdblogo"
+              src={tmdblogo}
+              alt="themoviedb"
+            />
           </a>
         </div>
         <div className="box">
@@ -65,7 +76,7 @@ function Footer() {
           <div className="icons">
             <div>
               <a target="_blank" rel="noreferrer" href="https://github.com/">
-                <FaGithub size="30" />
+                <AiOutlineGithub size="30" />
               </a>
             </div>
             <div>
@@ -74,7 +85,7 @@ function Footer() {
                 rel="noreferrer"
                 href="https://www.facebook.com/"
               >
-                <FaFacebook size="30" />
+                <AiOutlineFacebook size="30" />
               </a>
             </div>
             <div>
@@ -83,12 +94,12 @@ function Footer() {
                 rel="noreferrer"
                 href="https://www.instagram.com/"
               >
-                <FaInstagram size="30" />
+                <AiOutlineInstagram size="30" />
               </a>
             </div>
             <div>
               <a target="_blank" rel="noreferrer" href="https://twitter.com/">
-                <FaTwitter size="30" />
+                <AiOutlineTwitter size="30" />
               </a>
             </div>
           </div>

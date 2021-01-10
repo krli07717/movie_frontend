@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
-import { UserInfoContext, ACTIONS } from "../App";
+import { UserInfoContext } from "../App";
 import Collection from "../components/Collection";
 import Button from "../components/Button";
 
 function MyList() {
-  const { userInfoState, userInfoDispatch } = useContext(UserInfoContext);
+  const { userInfoState } = useContext(UserInfoContext);
   const [filterList, setFilterList] = useState(true);
   const [notWatchedOnly, setNotWatchedOnly] = useState(true);
 
@@ -42,6 +42,8 @@ function MyList() {
                     movieId={id}
                   />
                 );
+              } else {
+                return null;
               }
             })}
           </div>

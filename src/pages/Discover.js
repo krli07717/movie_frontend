@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import { UserInfoContext } from "../App";
+import React from "react";
 import Collection from "../components/Collection";
 
 // const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
@@ -8,7 +7,6 @@ import Collection from "../components/Collection";
 // all apis in one object; axios instance
 // row {rowtitle, rowfetchURLs}
 function Discover() {
-  const { userInfoState } = useContext(UserInfoContext);
   const collections = [
     { collectionName: "現正上映", collectionAPI: "NOW_PLAYING" },
     { collectionName: "即將上映", collectionAPI: "UPCOMING" },

@@ -6,7 +6,7 @@ import Button from "../components/Button";
 import Form from "../components/Form";
 
 function Login() {
-  const { userInfoState, userInfoDispatch } = useContext(UserInfoContext);
+  const { userInfoDispatch } = useContext(UserInfoContext);
   const [loginInputs, setLoginInputs] = useState({ email: "", password: "" });
   const [loginError, setLoginError] = useState(false);
 

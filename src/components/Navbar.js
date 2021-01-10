@@ -2,13 +2,13 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserInfoContext, ACTIONS } from "../App";
 import { backendInstance as axios } from "../utils/axios";
-import { GiPopcorn, GiHamburgerMenu } from "react-icons/gi";
+import { HiOutlineClipboardList, HiMenu } from "react-icons/hi";
 
 function Navbar() {
   const userInfoContext = useContext(UserInfoContext);
   const [navExpand, setNavExpand] = useState(false);
   const deleteJwtToken = async () => {
-    const res = await axios.get("auth/deleteToken");
+    await axios.get("auth/deleteToken");
     return;
   };
   return (
@@ -17,14 +17,14 @@ function Navbar() {
         <div className="logo">
           <h1>電影清單</h1>
           <span>
-            <GiPopcorn size="20" />
+            <HiOutlineClipboardList size="20" />
           </span>
         </div>
         <div
           className="hamburger"
           onClick={() => setNavExpand((prev) => !prev)}
         >
-          <GiHamburgerMenu size="20" />
+          <HiMenu size="20" />
         </div>
         <div>
           <nav>

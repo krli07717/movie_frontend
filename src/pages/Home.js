@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
-import { SiThemoviedatabase } from "react-icons/si";
 function Home() {
   return (
     <div className="home">

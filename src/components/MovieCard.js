@@ -1,11 +1,12 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, Suspense, lazy } from "react";
 import { UserInfoContext } from "../App";
-import Modal from "react-modal";
-import MovieModal from "./MovieModal";
+// import MovieModal from "./MovieModal";
 import Button from "./Button";
-import { FaCheckCircle, FaSave } from "react-icons/fa";
+import { AiFillCheckSquare, AiFillSave } from "react-icons/ai";
+// import loading from "../loading2.gif";
 
-Modal.setAppElement("#root");
+const MovieModal = lazy(() => import("./MovieModal"));
+
 const previewImagePrefix = `https://image.tmdb.org/t/p/w185/`;
 const modalImagePrefix = `https://image.tmdb.org/t/p/w500/`;
 const backdropImagePrefix = `https://image.tmdb.org/t/p/w1280/`;
@@ -44,6 +45,10 @@ function MovieCard({
     (item) => item.id === id
   );
 
+  const loadingComponent = () => {
+    return <div>{/* <img src={loading} alt="loading spinner" /> */}</div>;
+  };
+
   const ratingStyle =
     vote_average > 8
       ? "high"
@@ -64,9 +69,9 @@ function MovieCard({
         {movieAlreadyIncluded ? (
           <div className="status">
             {movieAlreadyIncluded.watched ? (
-              <FaCheckCircle size="20" color="rgb(67, 179, 117)" />
+              <AiFillCheckSquare size="22" color="rgb(67, 179, 117)" />
             ) : (
-              <FaSave size="20" color="rgb(236, 203, 146)" />
+              <AiFillSave size="22" color="rgb(236, 203, 146)" />
             )}
           </div>
         ) : null}
@@ -76,7 +81,9 @@ function MovieCard({
           <span>({vote_count})</span>
         </div>
       </div>
-      <MovieModal {...modalProps} />
+      <Suspense fallback={loadingComponent()}>
+        <MovieModal {...modalProps} />
+      </Suspense>
     </>
   );
 }

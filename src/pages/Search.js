@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Collection from "../components/Collection";
 import Button from "../components/Button";
-import { FaSearch } from "react-icons/fa";
+import { HiSearch } from "react-icons/hi";
 
 function Search() {
   const [query, setQuery] = useState("");
@@ -27,19 +27,21 @@ function Search() {
             onChange={(e) => onInputChange(e)}
           />
           <Button type="submit">
-            <FaSearch size="15" />
+            <HiSearch size="20" />
           </Button>
         </form>
       </div>
       {/* the following condition prevents Collection/ from rendering at first */}
-      {submit && (
-        <Collection
-          key={submit}
-          collectionName={""}
-          collectionAPI={"SEARCH"}
-          searchQuery={submit}
-        />
-      )}
+      <div className="result_rows">
+        {submit && (
+          <Collection
+            key={submit}
+            collectionName={""}
+            collectionAPI={"SEARCH"}
+            searchQuery={submit}
+          />
+        )}
+      </div>
     </div>
   );
 }

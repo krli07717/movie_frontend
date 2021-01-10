@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, Suspense, lazy } from "react";
 import "./App.scss";
 import {
   BrowserRouter as Router,
@@ -6,14 +6,23 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import Layout from "./layouts/Layout";
-import Home from "./pages/Home";
-import Search from "./pages/Search";
-import Discover from "./pages/Discover";
-import MyList from "./pages/MyList";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
+// import Layout from "./layouts/Layout";
+// import Home from "./pages/Home";
+// import Search from "./pages/Search";
+// import Discover from "./pages/Discover";
+// import MyList from "./pages/MyList";
+// import Login from "./pages/Login";
+// import Register from "./pages/Register";
 import { backendInstance as axios } from "./utils/axios";
+import loading from "./loading2.gif";
+
+const Layout = lazy(() => import("./layouts/Layout"));
+const Home = lazy(() => import("./pages/Home"));
+const Search = lazy(() => import("./pages/Search"));
+const Discover = lazy(() => import("./pages/Discover"));
+const MyList = lazy(() => import("./pages/MyList"));
+const Login = lazy(() => import("./pages/Login"));
+const Register = lazy(() => import("./pages/Register"));
 
 const UserInfoContext = React.createContext();
 const ACTIONS = {
@@ -124,38 +133,52 @@ function App() {
     checkAuthentication();
   }, []);
 
+  const loadingComponent = () => {
+    return (
+      <div className="loading">
+        <img src={loading} alt="loading spinner" />
+      </div>
+    );
+  };
+
   return (
     <UserInfoContext.Provider
       value={{ userInfoState: userInfo, userInfoDispatch: dispatch }}
     >
       <Router>
-        <Layout>
-          <Switch>
-            <Route path="/" exact>
-              {userInfo.isAuth ? <Redirect exact to="/Discover" /> : <Home />}
-            </Route>
-            <Route path="/Discover">
-              <Discover />
-            </Route>
-            <Route path="/Search">
-              <Search />
-            </Route>
-            <Route path="/MyList">
-              {/* when isAuth directs however to Discover */}
-              {userInfo.isAuth ? <MyList /> : <Redirect exact to="/Login" />}
-            </Route>
-            <Route path="/Login">
-              {userInfo.isAuth ? <Redirect exact to="/Discover" /> : <Login />}
-            </Route>
-            <Route path="/Register">
-              {userInfo.isAuth ? (
-                <Redirect exact to="/Discover" />
-              ) : (
-                <Register />
-              )}
-            </Route>
-          </Switch>
-        </Layout>
+        <Suspense fallback={loadingComponent()}>
+          <Layout>
+            <Switch>
+              <Route path="/" exact>
+                {userInfo.isAuth ? <Redirect exact to="/Discover" /> : <Home />}
+              </Route>
+              <Route path="/Discover">
+                <Discover />
+              </Route>
+              <Route path="/Search">
+                <Search />
+              </Route>
+              <Route path="/MyList">
+                {/* when isAuth directs however to Discover */}
+                {userInfo.isAuth ? <MyList /> : <Redirect exact to="/Login" />}
+              </Route>
+              <Route path="/Login">
+                {userInfo.isAuth ? (
+                  <Redirect exact to="/Discover" />
+                ) : (
+                  <Login />
+                )}
+              </Route>
+              <Route path="/Register">
+                {userInfo.isAuth ? (
+                  <Redirect exact to="/Discover" />
+                ) : (
+                  <Register />
+                )}
+              </Route>
+            </Switch>
+          </Layout>
+        </Suspense>
       </Router>
     </UserInfoContext.Provider>
   );
