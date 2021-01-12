@@ -8,7 +8,7 @@ function MyList() {
   const [filterList, setFilterList] = useState(true);
   const [notWatchedOnly, setNotWatchedOnly] = useState(true);
 
-  console.log("States @ MyList:", userInfoState);
+  // console.log("States @ MyList:", userInfoState);
   return (
     <div className="myList container">
       {userInfoState.MovieList.length ? (

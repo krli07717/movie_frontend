@@ -77,7 +77,9 @@ function MovieModal({
                 vote_average,
                 vote_count,
               };
-              console.log("similar props renders");
+              {
+                /* console.log("similar props renders"); */
+              }
               return poster_path ? <MovieCard key={id} {...props} /> : null;
             }
           )}

@@ -83,7 +83,7 @@ function App() {
         data: { user_id },
       } = await axios.get("auth/checkjwt");
       dispatch({ type: ACTIONS.LOG_IN, payload: user_id });
-      await console.log("jwt passed");
+      // console.log("jwt passed");
     } catch (err) {
       console.error(err);
     }
@@ -95,7 +95,7 @@ function App() {
         userId,
       });
       const payload = await JSON.parse(data);
-      console.log("getlist api fetched", payload);
+      // console.log("getlist api fetched", payload);
       dispatch({ type: ACTIONS.FETCH_LIST, payload: payload });
     } catch (error) {
       console.log(error);
@@ -108,7 +108,7 @@ function App() {
         userId: userInfo.userId,
         MovieList: userInfo.MovieList,
       });
-      console.log(res.data);
+      // console.log(res.data);
     } catch (error) {
       console.log(error);
     }

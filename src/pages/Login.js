@@ -17,14 +17,14 @@ function Login() {
         password,
       });
 
-      console.log("login api fetched", res.data);
+      // console.log("login api fetched", res.data);
 
       await userInfoDispatch({
         type: ACTIONS.LOG_IN,
         payload: res.data.userId,
       });
     } catch (error) {
-      console.log(error.response);
+      // console.log(error.response);
       setLoginError(true);
     }
   };
