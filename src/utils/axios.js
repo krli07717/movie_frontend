@@ -7,7 +7,7 @@ const movieInstance = axios.create({
 
 const backendInstance = axios.create({
   withCredentials: true, //for cookies
-  baseURL: "https://movie-app-717.herokuapp.com/",
+  baseURL: "https://boiling-anchorage-38866.herokuapp.com/",
 });
 
 export { movieInstance, backendInstance };
