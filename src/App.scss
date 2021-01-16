@@ -395,6 +395,7 @@ footer {
 }
 
 .modal_content {
+  height: auto;
   color: $primary--color;
   display: flex;
   flex-direction: column;
@@ -422,6 +423,7 @@ footer {
     height: auto;
     margin: 10px 0;
     @include flex_center(center);
+    flex-shrink: 0;
   }
 }
 
