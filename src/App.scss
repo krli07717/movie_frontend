@@ -401,6 +401,7 @@ footer {
   align-items: center;
   background-color: rgba(0, 0, 0, 0.774);
   .modal_text {
+    height: auto;
     border: 20px solid transparent;
     border-radius: 5px;
     h1 {
@@ -413,6 +414,9 @@ footer {
       line-height: 1em;
       margin: 2px 0 15px 0;
     }
+  }
+  .modal_img {
+    height: auto;
   }
   .modal_buttons {
     height: auto;
@@ -441,6 +445,7 @@ footer {
 }
 
 .recommendations {
+  height: auto;
   background-color: rgba(0, 0, 0, 0.267);
   h2 {
     text-align: center;

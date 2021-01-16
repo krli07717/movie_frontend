@@ -125,10 +125,12 @@ function MovieModal({
             <h5>({release_date})</h5>
             <h4>{overview}</h4>
           </div>
-          <div>
+          <div className="modal_img">
             <img src={modalImageUrl} alt="" />
           </div>
-          <div>{backdropImageUrl && <img src={backdropImageUrl} alt="" />}</div>
+          <div className="modal_img">
+            {backdropImageUrl && <img src={backdropImageUrl} alt="" />}
+          </div>
           <div className="modal_buttons">
             {!userInfoState.isAuth ? (
               <Button onClick={redirectLogin} type="button">
