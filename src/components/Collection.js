@@ -66,7 +66,6 @@ function Collection({ collectionName, collectionAPI, searchQuery, movieId }) {
   };
 
   const showLoadButton = () => {
-    // not letting LoadMore button render at first
     return collection.length && !noMoreLoads ? (
       <Button
         onClick={() => setPages((prevPage) => prevPage + 1)}

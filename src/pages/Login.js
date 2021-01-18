@@ -9,6 +9,7 @@ function Login() {
   const { userInfoDispatch } = useContext(UserInfoContext);
   const [loginInputs, setLoginInputs] = useState({ email: "", password: "" });
   const [loginError, setLoginError] = useState(false);
+  const [loginLoading, setLoginLoading] = useState(false);
 
   const login = async ({ email, password }) => {
     try {
@@ -25,6 +26,7 @@ function Login() {
       });
     } catch (error) {
       // console.log(error.response);
+      setLoginLoading(false);
       setLoginError(true);
     }
   };
@@ -35,6 +37,8 @@ function Login() {
 
   const onLoginSubmit = (e) => {
     e.preventDefault();
+    setLoginError(false);
+    setLoginLoading(true);
     login(loginInputs);
   };
 
@@ -45,6 +49,7 @@ function Login() {
         <Form
           onFormSubmit={onLoginSubmit}
           onInputChange={onInputChange}
+          loadingStatus={loginLoading}
           errorStatus={loginError}
           errorMessage="信箱或密碼不正確"
           SubmitButtonText="登入"

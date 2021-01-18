@@ -6,6 +6,7 @@ import { AiOutlineLock } from "react-icons/ai";
 const Form = ({
   onFormSubmit,
   onInputChange,
+  loadingStatus,
   SubmitButtonText,
   errorStatus,
   errorMessage,
@@ -30,8 +31,10 @@ const Form = ({
           placeholder="密碼"
           onChange={(e) => onInputChange(e)}
           required
+          minLength="4"
         />
       </div>
+      {loadingStatus && <h5>{SubmitButtonText}中..</h5>}
       {errorStatus && <h5>{errorMessage}</h5>}
       <div>
         <Button type="submit">{SubmitButtonText}</Button>

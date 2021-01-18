@@ -104,7 +104,7 @@ function App() {
 
   const updateDb = async () => {
     try {
-      const res = await axios.put("movies/updatedb", {
+      await axios.put("movies/updatedb", {
         userId: userInfo.userId,
         MovieList: userInfo.MovieList,
       });

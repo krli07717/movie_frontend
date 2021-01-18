@@ -10,6 +10,7 @@ function Register() {
     password: "",
   });
   const [registerError, setRegisterError] = useState(false);
+  const [registerLoading, setRegisterLoading] = useState(false);
 
   const register = async ({ email, password }) => {
     try {
@@ -24,6 +25,7 @@ function Register() {
       });
     } catch (error) {
       // console.log(error.response.data);
+      setRegisterLoading(false);
       setRegisterError(true);
     }
   };
@@ -34,6 +36,8 @@ function Register() {
 
   const onRegisterSubmit = (e) => {
     e.preventDefault();
+    setRegisterError(false);
+    setRegisterLoading(true);
     register(registerInputs);
   };
 
@@ -44,6 +48,7 @@ function Register() {
         <Form
           onFormSubmit={onRegisterSubmit}
           onInputChange={onInputChange}
+          loadingStatus={registerLoading}
           errorStatus={registerError}
           errorMessage="電子信箱已註冊"
           SubmitButtonText="註冊"
